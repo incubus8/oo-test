@@ -41,7 +41,7 @@ public class DataRepoTest {
     public ExpectedException expEx = ExpectedException.none();
 
     @Test
-    public void test1_RegisterWithEmptyItemName() throws Exception {
+    public void test_001_RegisterWithEmptyItemName() throws Exception {
         expEx.expect(Exception.class);
         expEx.expectMessage("Can't register. Item name should not empty");
 
@@ -49,7 +49,7 @@ public class DataRepoTest {
     }
 
     @Test
-    public void test2_RegisterWithEmptyItemContent() throws Exception {
+    public void test_002_RegisterWithEmptyItemContent() throws Exception {
         expEx.expect(Exception.class);
         expEx.expectMessage("Can't register. Item content should not empty");
 
@@ -57,7 +57,7 @@ public class DataRepoTest {
     }
 
     @Test
-    public void test3_RegisterWithInvalidItemType() throws Exception {
+    public void test_003_RegisterWithInvalidItemType() throws Exception {
         expEx.expect(Exception.class);
         expEx.expectMessage("Can't register. Wrong item type");
 
@@ -65,7 +65,7 @@ public class DataRepoTest {
     }
 
     @Test
-    public void test4_RegisterValidJSON() {
+    public void test_004_RegisterValidJSON() {
         try {
             final String itemName = "Valid Json";
             dataRepo.register(itemName, VALID_JSON_STRING, DataModel.TYPE_JSON);
@@ -77,7 +77,7 @@ public class DataRepoTest {
     }
 
     @Test
-    public void test5_RegisterJSONWithSameName() throws Exception {
+    public void test_005_RegisterJSONWithSameName() throws Exception {
         expEx.expect(Exception.class);
         expEx.expectMessage("Can't register. Item name already exist");
 
@@ -86,7 +86,7 @@ public class DataRepoTest {
     }
 
     @Test
-    public void test6_RegisterValidXML() {
+    public void test_006_RegisterValidXML() {
         try {
             final String itemName = "Valid XML";
             dataRepo.register(itemName, VALID_XML_STRING, DataModel.TYPE_XML);
@@ -98,7 +98,7 @@ public class DataRepoTest {
     }
 
     @Test
-    public void test7_RegisterInvalidJSON() throws Exception {
+    public void test_007_RegisterInvalidJSON() throws Exception {
         expEx.expect(Exception.class);
         expEx.expectMessage(StringContains.containsString("com.google.gson.stream.MalformedJsonException:"));
 
@@ -107,7 +107,7 @@ public class DataRepoTest {
     }
 
     @Test
-    public void test8_RegisterInvalidXML() throws Exception {
+    public void test_008_RegisterInvalidXML() throws Exception {
         expEx.expect(Exception.class);
         expEx.expectMessage(StringContains.containsString("Content is not allowed in prolog."));
 
@@ -116,13 +116,13 @@ public class DataRepoTest {
     }
 
     @Test
-    public void test9_Deregister() throws Exception {
+    public void test_009_Deregister() throws Exception {
         final String itemName = "Valid XML";
         dataRepo.deregister(itemName);
     }
 
     @Test
-    public void test10_DeregisterForTheSecondTime() throws Exception {
+    public void test_010_DeregisterForTheSecondTime() throws Exception {
         expEx.expect(Exception.class);
         expEx.expectMessage("Can't deregister. Item name does not exist");
 
@@ -131,7 +131,7 @@ public class DataRepoTest {
     }
 
     @Test
-    public void test11_DeregisterWithNullString() throws Exception {
+    public void test_011_DeregisterWithNullString() throws Exception {
         expEx.expect(Exception.class);
         expEx.expectMessage("Can't deregister. Item name should not empty");
 
@@ -139,7 +139,7 @@ public class DataRepoTest {
     }
 
     @Test
-    public void test12_DeregisterWithEmptyString() throws Exception {
+    public void test_012_DeregisterWithEmptyString() throws Exception {
         expEx.expect(Exception.class);
         expEx.expectMessage("Can't deregister. Item name should not empty");
 
@@ -147,14 +147,14 @@ public class DataRepoTest {
     }
 
     @Test
-    public void test13_GetTypeWithEmptyName() throws Exception {
+    public void test_013_GetTypeWithEmptyName() throws Exception {
         expEx.expect(Exception.class);
         expEx.expectMessage("Can't getType. Item name should not empty");
         dataRepo.getType("  ");
     }
 
     @Test
-    public void test14_GetTypeWithNullName() throws Exception {
+    public void test_014_GetTypeWithNullName() throws Exception {
         expEx.expect(Exception.class);
         expEx.expectMessage("Can't getType. Item name should not empty");
 
@@ -162,7 +162,7 @@ public class DataRepoTest {
     }
 
     @Test
-    public void test15_GetTypeWithInvalidKey() throws Exception {
+    public void test_015_GetTypeWithInvalidKey() throws Exception {
         expEx.expect(Exception.class);
         expEx.expectMessage("Can't getType. Item name does not exist");
 
