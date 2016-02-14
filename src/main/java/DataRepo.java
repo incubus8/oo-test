@@ -18,11 +18,11 @@ public class DataRepo {
     }
 
     public void register(String itemName, String itemContent, int itemType) throws Exception {
-        if (StringUtils.isEmpty(itemName)) {
+        if (StringUtils.isAnyBlank(itemName)) {
             throw new Exception("Can't register. Item name should not empty");
         }
 
-        if (StringUtils.isEmpty(itemContent)) {
+        if (StringUtils.isAnyBlank(itemContent)) {
             throw new Exception("Can't register. Item content should not empty");
         }
 
@@ -45,11 +45,11 @@ public class DataRepo {
     }
 
     public void deregister(String itemName) throws Exception {
-        if (StringUtils.isEmpty(itemName)) {
+        if (StringUtils.isAnyBlank(itemName)) {
             throw new Exception("Can't deregister. Item name should not empty");
         }
 
-        if (this.data.containsKey(itemName)) {
+        if (!this.data.containsKey(itemName)) {
             throw new Exception("Can't deregister. Item name does not exist");
         }
 
@@ -57,7 +57,7 @@ public class DataRepo {
     }
 
     public int getType(String itemName) throws Exception {
-        if (StringUtils.isEmpty(itemName)) {
+        if (StringUtils.isAnyBlank(itemName)) {
             throw new Exception("Can't getType. Item name should not empty");
         }
 
@@ -77,6 +77,10 @@ public class DataRepo {
         DocumentBuilder builder = factory.newDocumentBuilder();
         InputSource is = new InputSource(new StringReader(itemContent));
         builder.parse(is);
+    }
+
+    public void clear() {
+        data.clear();
     }
 
 }
